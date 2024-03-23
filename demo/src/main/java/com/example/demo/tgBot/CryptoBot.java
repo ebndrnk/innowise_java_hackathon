@@ -44,7 +44,13 @@ public class CryptoBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             Long chatId = update.getMessage().getChatId();
 
+//            не успел это проверить
+            if(userChatIDService.getChatIds().size() > 20) {
+                messageText = "Not avaible";
+            }
+            /// <---_-----------------------------------
             if ("/start".equals(messageText)) {
+
                 userChatIDService.addChatId(chatId); // Добавляем ID чата
                 sendMessageWithMenu(String.valueOf(chatId));
             } else if ("3".equals(messageText) || "5".equals(messageText) || "10".equals(messageText) || "15".equals(messageText)) {
